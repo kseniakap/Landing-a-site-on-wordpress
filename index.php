@@ -73,15 +73,23 @@
                 <div class="row">
                     <div class="col-md-10 offset-md-1 col-lg-5 offset-lg-1">
                         <div class="about__img">
-                            <img src="<?php echo bloginfo("template_url");?>/assets/img/about.jpg" alt="про компанию">
+                            <!-- <img src="<?php the_field("about_img") ?>" alt="про компанию"> -->
+                            <?php
+                            $image = get_field("about_img");
+
+                            if(!empty($image)): ?>
+                                <img class="specialists__img"  src="<?php echo $image["url"]; ?>" alt="<?php echo $image["alt"]; ?>" >
+                            <?php endif;      
+                            print_r($image);                      
+                         ?>
                         </div>
                     </div>
                     <div class="col-md-10 offset-md-1 offset-lg-0 col-lg-6 col-xl-5 offset-xl-1">
-                        <h1 class="title underlined">Про компанию</h1>
+                        <h1 class="title underlined">
+                            <?php the_field("about_title") ?>
+                        </h1>
                         <div class="about__text">
-                            Наша компания уже больше десяти лет дарит позитивные эмоции детям и их родителям. Мы воплощаем все детские мечты и помогаем родителям дарить счастливое детство!
-                            <br> <br>
-                            Но и взрослые иногда так нуждаются в детских эмоциях! Мы можем и это, ведь так приятно почувствовать заботу даже когда тебе за... :)
+                             <?php the_field("about_descr") ?>
                         </div>
                         <a href="#" class="button">Узнать больше</a>
                     </div>
@@ -93,7 +101,15 @@
                 <div class="title">Наша команда</div>
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
-                        <img class="specialists__img" src="<?php echo bloginfo("template_url");?>/assets/img/team.jpg" alt="наша команда">
+                        <!-- <img class="specialists__img" src="<?php echo bloginfo("template_url");?>/assets/img/team.jpg" alt="наша команда"> -->
+                        <!-- <?php
+                            $image = get_field("specialists__img");
+
+                            if(!empty($image)): ?>
+                                <img class="specialists__img"  src="<?php echo $image["url"]; ?>" alt="<?php echo $image["alt"]; ?>" >
+                            <?php endif;      
+                            print_r($image);                      
+                         ?> -->
                     </div>
                 </div>
             </div>
@@ -198,26 +214,24 @@
 
         <div class="aboutus" id="aboutus">
             <div class="container">
-                <h1 class="title">Наша история</h1>
+                <h1 class="title"><?php the_field("aboutus_title") ?></h1>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="subtitle">
                             Все начиналось с желания
                         </div>
                         <div class="aboutus__text">
-                            Желания сделать как можно больше детей счастливыми. Именно с этой идеи все и зарождалось.
-                            <br><br>
-                            Первые игрушки, сделанные вручную были классическими плюшевыми медведями, которые разошлись настолько быстро, что нас завалили заказами на несколько месяцев вперед. Именно в то время мы поняли, что идем правильным путем, вкладывая все силы и эмоции в наши игрушки.
+                           <?php the_field("aboutus_descr") ?>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <img class="aboutus__img" src="<?php echo bloginfo("template_url");?>/assets/img/about_1.jpg" alt="мир детства">
+                        <img class="aboutus__img" src="<?php the_field("aboutus_img-1") ?>" alt="история компании">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <img class="aboutus__img" src="<?php echo bloginfo("template_url");?>/assets/img/about_2.jpg" alt="мир детства">
+                        <img class="aboutus__img" src="<?php the_field("aboutus_img-2") ?>" alt="история компании">
                     </div>
                     <div class="col-lg-6">
                         <div class="subtitle">
@@ -243,7 +257,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <img class="aboutus__img" src="<?php echo bloginfo("template_url");?>/assets/img/about_3.jpg" alt="мир детства">
+                        <img class="aboutus__img" src="<?php the_field("aboutus_img-3") ?>" alt="мир детства">
                     </div>
                 </div>
             </div>
@@ -317,7 +331,7 @@
                                             </linearGradient>
                                             </defs>
                                         </svg>
-                                        <a href="tel:+797867834347">+797867834347</a>
+                                        <a href="tel:<?php the_field("contacts-tel-1", 2); ?>"><?php the_field("contacts-tel-1", 2); ?></a>
                                     </div>
                                 </div>
                                 <div class="contacts__phoneblock">
@@ -367,13 +381,13 @@
                                             </linearGradient>
                                             </defs>
                                         </svg>
-                                        <a href="tel:+797867834358">+797867834358</a>
+                                        <a href="tel:<?php the_field("contacts-tel-2", 2); ?>"><?php the_field("contacts-tel-2", 2); ?></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="contacts__mail">
                                 Или напишите нам на почту
-                                <a href="mailto:mirdetstva@gmail.com">mirdetstva@gmail.com</a>
+                                <a href="mailto:mirdetstva@gmail.com"><?php the_field("address", 2); ?></a>
                             </div>
                         </div>
                     </div>
@@ -505,3 +519,12 @@
 <?php 
     get_footer();
 ?>
+
+<!-- <?php 
+    function print_hello($text, $name){
+        echo "Hello world" . $text . $name;
+    }
+
+    add_action("my_hook", "print_hello", 10, 2 );
+    do_action("my_hook", "dear", "ivan");
+?> -->

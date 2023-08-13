@@ -3,7 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Мир Детства</title>
+		<title>
+            <?php 
+                bloginfo("name"); echo " | "; bloginfo("description"); 
+            ?>
+       </title>
         <meta name="theme-color" content="#c9e0e04d">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -25,28 +29,34 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-11 col-sm-12 col-md-12 col-lg-3">
-                        <a href="#" class="header__logo">
-                            <img src="<?php echo bloginfo("template_url");?>/assets/img/icons/svg/logo.svg" alt="Мир детства" class="header__logo-img">
-                            <div class="header__logo-text">Мир детства</div>
-                        </a>
+                        <div class="header__logo">
+                            <?php the_custom_logo(); ?>
+                        </div>
+                        <!-- <a href="<?php echo get_home_url();?>" class="header__logo">
+                            <img src="<?php // получаем ссылку на логотип
+                                $custom_logo__url = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' ); 
+                                // выводим
+                                echo $custom_logo__url[0]; 
+                            ?>" alt="мир детства" class="header__logo-img">
+                        </a> -->
                     </div>
                     <div class="col-md-12 col-lg-9 offset-lg-0 col-xl-7 offset-xl-2 ">
                         <div class="header__contacts">
                             <div class="header__contacts-item">
                                 <img src="<?php echo bloginfo("template_url");?>/assets/img/icons/svg/email.svg" alt="почта" class="header__contacts-logo">
-                                <a href="mailto:mirdetstva@gmail.com" class="header__contacts-mail">mirdetstva@gmail.com</a>
+                                <a href="mailto:<?php the_field("mail", 2); ?>" class="header__contacts-mail"><?php the_field("mail", 2); ?></a>
+                                <!-- 2 - уникальный id страницы, обычно 2, смотреть в адресной строке http://begin/wp-admin/post.php?post=2&action=edit-->
                             </div>
                             <div class="header__contacts-item">
                                 <img src="<?php echo bloginfo("template_url");?>/assets/img/icons/svg/phone.svg" alt="телефон" class="header__contacts-logo">
                                 <div class="header__contacts-tel">
-                                    <a href="tel:+797867834347">+797867834347</a>
-                                    <a href="tel:+797867834358">+797867834358</a>
+                                    <a href="tel:<?php the_field("contacts-tel-1", 2); ?>"><?php the_field("contacts-tel-1", 2); ?></a>
+                                    <a href="tel:<?php the_field("contacts-tel-2", 2); ?>"><?php the_field("contacts-tel-2", 2); ?></a>
                                 </div>
                             </div>
                             <div class="header__contacts-item">
                                 <img src="<?php echo bloginfo("template_url");?>/assets/img/icons/svg/pointer.svg" alt="указатель" class="header__contacts-logo">
-                                <address>ул. Василисы Кожиной, 1<br>
-                                    Москва, Россия, 121096</address>
+                                <address><?php the_field("address", 2); ?></address>
                             </div>
                         </div>
                     </div>
