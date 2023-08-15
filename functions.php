@@ -15,4 +15,5 @@ add_action("wp_enqueue_scripts", "chilhood_scripts");
     };
 
     add_theme_support( 'custom-logo' );//появится возможность вставки лого
+    add_theme_support( 'post-thumbnails' );//изображение у поста
 ?>
